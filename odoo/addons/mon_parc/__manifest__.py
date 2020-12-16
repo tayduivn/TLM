@@ -30,6 +30,7 @@
         'views/remorque.xml',
         'views/trajets.xml',
         'views/voyage.xml',
+        'views/models.xml',
         # 'views/templates.xml',
     ],
     # only loaded in demonstration mode

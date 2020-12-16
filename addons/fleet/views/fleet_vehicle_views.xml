@@ -6,9 +6,9 @@
         <field name="model">fleet.vehicle</field>
         <field name="arch" type="xml"> 
             <form string="Vehicle">
-                <header>
+                <!-- <header>
                     <field name="state_id"  widget="statusbar" options="{'clickable': '1'}"/>
-                </header>
+                </header> -->
                 <sheet>
                     <field name="currency_id" invisible="1"/>
                     <div class="oe_button_box" name="button_box">

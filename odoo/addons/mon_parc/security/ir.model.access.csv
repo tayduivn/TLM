@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mon_parc_mon_parc,access_mon_parc.mon_parc,model_mon_parc_mon_parc,,1,1,1,1
 access_mon_parc_chauffeur,access_mon_parc.chauffeur,model_mon_parc_chauffeur,,1,1,1,1
 access_mon_parc_remorque,access_mon_parc.remorque,model_mon_parc_remorque,,1,1,1,1
 access_mon_parc_tracteur,access_mon_parc.tracteur,model_mon_parc_tracteur,,1,1,1,1

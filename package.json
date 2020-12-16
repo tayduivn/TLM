@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "start": "python odoo-bin -r odoo -w 123 --addons-path=addons -d mydb"
+      }
+}
