@@ -27,7 +27,7 @@ class voyage(models.Model):
 
     trajets_id = fields.Many2one(comodel_name='mon_parc.trajet')
 
-    mission_id = fields.Many2one('fleet.vehicle.mission', 'Mission')
+    # mission_id = fields.Many2one('fleet.vehicle.mission', 'Mission')
     # mission = fields.Float(compute="_get_mission",
     #                        inverse='_set_mission', string='Mission Value')
     
@@ -42,10 +42,18 @@ class voyage(models.Model):
 
     def _create_check_sequence(self):
         self.mission_id = self.env['fleet.vehicle.mission'].sudo().create({
+            'name': self.trajets_id.trajet,
             'comment': self.commentaire,
-            'date_arrivee': self.pointdepart,
-            'date_sortie':  self.datearrivee,
-            'vehicle_id': self.tracteur_id
+            'date_arrivee': self.datearrivee,
+            'date_sortie':  self.datedepart,
+            'vehicle_id': self.remorque_id.id
+            })
+        self.mission_id = self.env['fleet.vehicle.mission'].sudo().create({
+            'name': self.trajets_id.trajet,
+            'comment': self.commentaire,
+            'date_arrivee': self.datearrivee,
+            'date_sortie':  self.datedepart,
+            'vehicle_id': self.tracteur_id.id
             })
 
     # def create(self):
