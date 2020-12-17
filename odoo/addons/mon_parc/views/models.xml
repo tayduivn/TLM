@@ -12,41 +12,35 @@
             </field>
         </record>
 
-
         <!-- explicit from view definition -->
         <record model="ir.ui.view" id="model_form_view">
             <field name="name">model From</field>
             <field name="model">mon_parc.mon_parc</field>
             <field name="arch" type="xml">
                 <form>
-                    <sheet>
-                        <div class="oe_button_box" name="button_box">
-                            <!-- <button 
+                    <div class="oe_button_box" name="button_box">
+                        <!-- <button 
                                 type="object"
                                 class="oe_stat_button"
-                                icon="fa-history">
-                                <field name="value2" widget="statinfo" string="Drivers History"/>
-                            </button> -->
-                            <button string="confirmer" name="_clickme" icon="fa-flask" class="oe_stat_button"></button>
-                        </div>
-                        <group col="2">
-                            <field name="name"/>
-                            <field name="description"/>
-                        </group>
-                    </sheet>
-
+                                icon="fa-history"><field name="value2" widget="statinfo" string="Drivers History"/></button> -->
+                        <button string="confirmer" name="_clickme" icon="fa-flask" class="oe_stat_button"></button>
+                        <!-- <button icon="fa-cogs"  class="fa fa-pencil" string="Click"/> -->
+                    </div>
+                    <group col="2">
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
                 </form>
             </field>
         </record>
-
 
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="model_action_window">
             <field name="name">model window</field>
             <field name="res_model">mon_parc.mon_parc</field>
             <field name="view_mode">tree,form</field>
-        </record>
 
+        </record>
 
         <menuitem name="myModel" id="mon_parc.myModel" parent="mon_parc.menu_root"/>
 

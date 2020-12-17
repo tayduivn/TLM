@@ -42,6 +42,7 @@ class FleetVehicle(models.Model):
     service_count = fields.Integer(compute="_compute_count_all", string='Services')
     fuel_logs_count = fields.Integer(compute="_compute_count_all", string='Fuel Log Count')
     odometer_count = fields.Integer(compute="_compute_count_all", string='Odometer')
+    mission_count = fields.Integer(compute="_compute_count_all", string='Mission')
     history_count = fields.Integer(compute="_compute_count_all", string="Drivers History Count")
     next_assignation_date = fields.Date('Assignation Date', help='This is the date at which the car will be available, if not set it means available instantly')
     acquisition_date = fields.Date('Immatriculation Date', required=False,
@@ -111,12 +112,14 @@ class FleetVehicle(models.Model):
 
     def _compute_count_all(self):
         Odometer = self.env['fleet.vehicle.odometer']
+        Mission = self.env['fleet.vehicle.mission']
         LogFuel = self.env['fleet.vehicle.log.fuel']
         LogService = self.env['fleet.vehicle.log.services']
         LogContract = self.env['fleet.vehicle.log.contract']
         Cost = self.env['fleet.vehicle.cost']
         for record in self:
             record.odometer_count = Odometer.search_count([('vehicle_id', '=', record.id)])
+            record.mission_count = Mission.search_count([('vehicle_id', '=', record.id)])
             record.fuel_logs_count = LogFuel.search_count([('vehicle_id', '=', record.id)])
             record.service_count = LogService.search_count([('vehicle_id', '=', record.id)])
             record.contract_count = LogContract.search_count([('vehicle_id', '=', record.id), ('state', '!=', 'closed')])
@@ -281,6 +284,7 @@ class FleetVehicle(models.Model):
         return models.lazy_name_get(self.browse(rec).with_user(name_get_uid))
 
     def return_action_to_open(self):
+        
         """ This opens the xml view specified in xml_id for the current vehicle """
         self.ensure_one()
         xml_id = self.env.context.get('xml_id')
@@ -323,6 +327,16 @@ class FleetVehicle(models.Model):
             'domain': [('vehicle_id', '=', self.id)],
             'context': {'default_driver_id': self.driver_id.id, 'default_vehicle_id': self.id}
         }
+
+class FleetVehicleMission(models.Model):
+    _name = 'fleet.vehicle.mission'
+
+    name = fields.Char()
+    comment  = fields.Char(string='Commentaire')
+    date_sortie  = fields.Date(string='Date Sortie')
+    date_arrivee  = fields.Date(string="Date d'arrivee")
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
+
 
 class FleetVehicleOdometer(models.Model):
     _name = 'fleet.vehicle.odometer'

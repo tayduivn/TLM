@@ -10,11 +10,24 @@ class mon_parc(models.Model):
      value2 = fields.Float(compute="_value_pc", store=True)
      description = fields.Text()
 
-     def _clickme():
-         print('hello azhar')
-         return 'hello world '
+    #  @api.onchange('name')
+    #  def validasi_form(self):
+    #      return {
+    #          'warning' :{
+    #              'title' : 'popup' ,
+    #              'message' : 'message popup'
+    #          }
+    #      }
+     
+
+    
+     @api.depends('name')
+     def _clickme(self):
+         self.name = 'hello azhar'
+         print('hello azhar *************************************************************************')
 
      @api.depends('value')
      def _value_pc(self):
          self.value2 = float(self.value) / 100
+         print('value 2 ************************************************************************* : ')
     

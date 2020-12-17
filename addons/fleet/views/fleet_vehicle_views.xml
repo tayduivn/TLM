@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
     <record id='fleet_vehicle_view_form' model='ir.ui.view'>
         <field name="name">fleet.vehicle.form</field>
         <field name="model">fleet.vehicle</field>
-        <field name="arch" type="xml"> 
+        <field name="arch" type="xml">
             <form string="Vehicle">
-                <!-- <header>
-                    <field name="state_id"  widget="statusbar" options="{'clickable': '1'}"/>
-                </header> -->
+                <!-- <header><field name="state_id"  widget="statusbar" options="{'clickable': '1'}"/></header> -->
                 <sheet>
                     <field name="currency_id" invisible="1"/>
                     <div class="oe_button_box" name="button_box">
@@ -57,6 +54,14 @@
                             context="{'xml_id':'fleet_vehicle_odometer_action'}"
                             help="show the odometer logs for this vehicle" >
                             <field name="odometer_count" widget="statinfo" string="Odometer"/>
+                        </button>
+                        <button name="return_action_to_open"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-tachometer"
+                            context="{'xml_id':'fleet_vehicle_mission_action'}"
+                            help="show the odometer logs for this vehicle" >
+                            <field name="mission_count" widget="statinfo" string="Mission"/>
                         </button>
                     </div>
                     <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -122,13 +127,15 @@
                             <field name="fuel_type"/>
                             <label for="co2"/>
                             <div class="o_row" name="co2">
-                                <field name="co2"/><span>g/km</span>
+                                <field name="co2"/>
+                                <span>g/km</span>
                             </div>
                             <field name="horsepower"/>
                             <field name="horsepower_tax" widget="monetary"/>
                             <label for="power"/>
                             <div class="o_row">
-                                <field name="power"/><span>kW</span>
+                                <field name="power"/>
+                                <span>kW</span>
                             </div>
                         </group>
                     </group>
@@ -141,7 +148,6 @@
             </form>
         </field>
     </record>
-
     <record id='fleet_vehicle_view_tree' model='ir.ui.view'>
         <field name="name">fleet.vehicle.tree</field>
         <field name="model">fleet.vehicle</field>
@@ -164,7 +170,6 @@
             </tree>
         </field>
     </record>
-
     <record id="fleet_vehicle_view_search" model="ir.ui.view">
         <field name="name">fleet.vehicle.search</field>
         <field name="model">fleet.vehicle</field>
@@ -197,11 +202,9 @@
                     <filter string="Model" name="groupby_model" context="{'group_by': 'model_id'}"/>
                     <filter string="Brand" name="groupby_make" context="{'group_by': 'brand_id'}"/>
                 </group>
-           </search>
+            </search>
         </field>
     </record>
-
-
     <record id='fleet_vehicle_view_kanban' model='ir.ui.view'>
         <field name="name">fleet.vehicle.kanban</field>
         <field name="model">fleet.vehicle</field>
@@ -223,7 +226,6 @@
                 <field name="activity_ids"/>
                 <field name="activity_state"/>
                 <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
-
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
@@ -232,20 +234,27 @@
                             </div>
                             <div class="oe_kanban_details">
                                 <strong class="o_kanban_record_title">
-                                    <field name="license_plate"/> : <field name="model_id"/>
+                                    <field name="license_plate"/> : 
+                                    <field name="model_id"/>
                                 </strong>
                                 <div class="o_kanban_tags_section">
                                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                                 </div>
                                 <ul>
                                     <li>
-                                        <t t-if="record.driver_id.raw_value"><field name="driver_id"/></t>
+                                        <t t-if="record.driver_id.raw_value">
+                                            <field name="driver_id"/>
+                                        </t>
                                     </li>
                                     <li>
-                                        <t t-if="record.future_driver_id.raw_value">Future Driver : <field name="future_driver_id"/></t>
+                                        <t t-if="record.future_driver_id.raw_value">Future Driver : 
+                                            <field name="future_driver_id"/>
+                                        </t>
                                     </li>
                                     <li>
-                                        <t t-if="record.location.raw_value"><field name="location"/></t>
+                                        <t t-if="record.location.raw_value">
+                                            <field name="location"/>
+                                        </t>
                                     </li>
                                 </ul>
                             </div>
@@ -255,12 +264,11 @@
                                    data-context='{"xml_id":"fleet_vehicle_log_contract_action"}'>
                                     <field name="contract_count"/>
                                     Contract(s)
+                                    
                                     <span t-if="record.contract_renewal_due_soon.raw_value and !record.contract_renewal_overdue.raw_value"
-                                        class="fa fa-exclamation-triangle" t-att-style="'color:orange'" role="img" aria-label="Warning: renewal due soon" title="Warning: renewal due soon">
-                                    </span>
-                                     <span t-if="record.contract_renewal_overdue.raw_value"
-                                        class="fa fa-exclamation-triangle" t-att-style="'color:red;'" role="img" aria-label="Attention: renewal overdue" title="Attention: renewal overdue">
-                                    </span>
+                                        class="fa fa-exclamation-triangle" t-att-style="'color:orange'" role="img" aria-label="Warning: renewal due soon" title="Warning: renewal due soon"></span>
+                                    <span t-if="record.contract_renewal_overdue.raw_value"
+                                        class="fa fa-exclamation-triangle" t-att-style="'color:red;'" role="img" aria-label="Attention: renewal overdue" title="Attention: renewal overdue"></span>
                                 </a>
                             </div>
                             <div class="o_kanban_inline_block" t-if="!selection_mode">
@@ -272,7 +280,6 @@
             </kanban>
         </field>
     </record>
-
     <record id="fleet_vehicle_view_activity" model="ir.ui.view">
         <field name="name">fleet.vehicle.activity</field>
         <field name="model">fleet.vehicle</field>
@@ -284,33 +291,32 @@
                     <div t-name="activity-box">
                         <img t-att-src="activity_image('fleet.vehicle', 'image_128', record.id.raw_value)" role="img" t-att-title="record.id.value" t-att-alt="record.id.value"/>
                         <div>
-                            <field name="license_plate"/> : <field name="model_id"/>
+                            <field name="license_plate"/> : 
+                            <field name="model_id"/>
                         </div>
                     </div>
                 </templates>
             </activity>
         </field>
     </record>
-
     <record id='fleet_vehicle_action' model='ir.actions.act_window'>
         <field name="name">Vehicles</field>
         <field name="res_model">fleet.vehicle</field>
         <field name="view_mode">kanban,tree,form,activity</field>
         <field name="context">{'search_default_groupby_status': 1}</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
+            <p class="o_view_nocontent_smiling_face">
             Create a new vehicle
-          </p><p>
+          </p>
+            <p>
             Manage your fleet by keeping track of the contracts, services, odometers and fuel logs associated to each vehicle.
           </p>
         </field>
     </record>
-
     <menuitem name="Vehicles" parent="menu_root" id="fleet_vehicles" sequence="2" groups="fleet_group_user"/>
     <menuitem action="fleet_vehicle_action" parent="fleet_vehicles" id="fleet_vehicle_menu" groups="fleet_group_user"/>
     <menuitem action="fleet_vehicle_model_action" parent="fleet_vehicles" id="fleet_vehicle_model_menu" sequence="11"/>
-
-   <record id='fleet_vehicle_odometer_view_form' model='ir.ui.view'>
+    <record id='fleet_vehicle_odometer_view_form' model='ir.ui.view'>
         <field name="name">fleet.vehicle.odometer.form</field>
         <field name="model">fleet.vehicle.odometer</field>
         <field name="arch" type="xml">
@@ -326,7 +332,6 @@
             </form>
         </field>
     </record>
-
     <record id='fleet_vehicle_odometer_view_tree' model='ir.ui.view'>
         <field name="name">fleet.vehicle.odometer.tree</field>
         <field name="model">fleet.vehicle.odometer</field>
@@ -340,7 +345,6 @@
             </tree>
         </field>
     </record>
-
     <record id='fleet_vehicle_odometer_view_kanban' model='ir.ui.view'>
         <field name="name">fleet.vehicle.odometer.kanban</field>
         <field name="model">fleet.vehicle.odometer</field>
@@ -352,12 +356,18 @@
                             <div>
                                 <strong>
                                     <field name="vehicle_id"/>
-                                    <span class="float-right"><field name="date"/></span>
+                                    <span class="float-right">
+                                        <field name="date"/>
+                                    </span>
                                 </strong>
                             </div>
                             <div>
-                                <span><field name="driver_id"/></span>
-                                <span class="float-right"><field name="value"/> Km</span>
+                                <span>
+                                    <field name="driver_id"/>
+                                </span>
+                                <span class="float-right">
+                                    <field name="value"/> Km
+                                </span>
                             </div>
                         </div>
                     </t>
@@ -365,7 +375,6 @@
             </kanban>
         </field>
     </record>
-
     <record id='fleet_vehicle_odometer_view_search' model='ir.ui.view'>
         <field name="name">fleet.vehicle.odometer.search</field>
         <field name="model">fleet.vehicle.odometer</field>
@@ -381,11 +390,10 @@
             </search>
         </field>
     </record>
-
     <record id="fleet_vehicle_odometer_view_graph" model="ir.ui.view">
-       <field name="name">fleet.vehicle.odometer.graph</field>
-       <field name="model">fleet.vehicle.odometer</field>
-       <field name="arch" type="xml">
+        <field name="name">fleet.vehicle.odometer.graph</field>
+        <field name="model">fleet.vehicle.odometer</field>
+        <field name="arch" type="xml">
             <graph string="Odometer Values Per Vehicle">
                 <field name="vehicle_id" type="row"/>
                 <field name="value" type="measure"/>
@@ -393,22 +401,37 @@
         </field>
     </record>
 
+    <record id='fleet_vehicle_mission_action' model='ir.actions.act_window'>
+        <field name="name">Vehicles Mission</field>
+        <field name="res_model">fleet.vehicle.mission</field>
+        <field name="view_mode">tree,kanban,form,graph</field>
+        <field name="context">{"search_default_groupby_vehicle" : True}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new mission log
+          </p>
+            <p>
+            You can add various mission entries for all vehicles.
+          </p>
+        </field>
+    </record>
+    <menuitem action="fleet_vehicle_mission_action" parent="fleet_vehicles" id="fleet_vehicle_mission_menu" groups="fleet_group_user"/>
+
     <record id='fleet_vehicle_odometer_action' model='ir.actions.act_window'>
         <field name="name">Vehicles Odometer</field>
         <field name="res_model">fleet.vehicle.odometer</field>
         <field name="view_mode">tree,kanban,form,graph</field>
         <field name="context">{"search_default_groupby_vehicle" : True}</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
+            <p class="o_view_nocontent_smiling_face">
             Create a new odometer log
-          </p><p>
+          </p>
+            <p>
             You can add various odometer entries for all vehicles.
           </p>
         </field>
     </record>
-
     <menuitem action="fleet_vehicle_odometer_action" parent="fleet_vehicles" id="fleet_vehicle_odometer_menu" groups="fleet_group_user"/>
-
     <record id='fleet_vehicle_service_types_view_tree' model='ir.ui.view'>
         <field name="name">fleet.service.type.tree</field>
         <field name="model">fleet.service.type</field>
@@ -419,7 +442,6 @@
             </tree>
         </field>
     </record>
-
     <record id='fleet_vehicle_service_types_action' model='ir.actions.act_window'>
         <field name="name">Service Types</field>
         <field name="res_model">fleet.service.type</field>
@@ -427,15 +449,15 @@
         <field name="domain">[('category','=','service')]</field>
         <field name="context">{'default_category':'service'}</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
+            <p class="o_view_nocontent_smiling_face">
             Create a new type of service
-          </p><p>
+          </p>
+            <p>
             Each service can used in contracts, as a standalone service or both.
           </p>
         </field>
     </record>
     <menuitem action="fleet_vehicle_service_types_action" parent="fleet_configuration" id="fleet_vehicle_service_types_menu" sequence="3"/>
-
     <record id='fleet_vehicle_contract_types_action' model='ir.actions.act_window'>
         <field name="name">Contract Types</field>
         <field name="res_model">fleet.service.type</field>
@@ -443,14 +465,12 @@
         <field name="domain">[('category','=','contract')]</field>
         <field name="context">{'default_category':'contract'}</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
+            <p class="o_view_nocontent_smiling_face">
             Create a new type of contract
           </p>
         </field>
     </record>
     <menuitem action="fleet_vehicle_contract_types_action" parent="fleet_configuration" id="fleet_vehicle_contract_types_menu" sequence="4"/>
-
-
     <record id='fleet_vehicle_state_view_tree' model='ir.ui.view'>
         <field name="name">fleet.vehicle.state.tree</field>
         <field name="model">fleet.vehicle.state</field>
@@ -461,23 +481,21 @@
             </tree>
         </field>
     </record>
-
     <record id='fleet_vehicle_state_action' model='ir.actions.act_window'>
         <field name="name">Vehicle Status</field>
         <field name="res_model">fleet.vehicle.state</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
+            <p class="o_view_nocontent_smiling_face">
             Create a new vehicle status
-          </p><p>
+          </p>
+            <p>
             You can customize available status to track the evolution of
             each vehicle. Example: active, being repaired, sold.
           </p>
         </field>
     </record>
-
     <menuitem action="fleet_vehicle_state_action" parent="fleet_configuration" id="fleet_vehicle_state_menu" groups="fleet_group_manager"/>
-
     <record id="fleet_vehicle_tag_view_view_form" model="ir.ui.view">
         <field name="name">fleet.vehicle.tag.form</field>
         <field name="model">fleet.vehicle.tag</field>
@@ -491,7 +509,6 @@
             </form>
         </field>
     </record>
-
     <record id="fleet_vehicle_tag_view_view_tree" model="ir.ui.view">
         <field name="name">fleet.vehicle.tag.tree</field>
         <field name="model">fleet.vehicle.tag</field>
@@ -501,7 +518,6 @@
             </tree>
         </field>
     </record>
-
     <record id="fleet_vehicle_tag_action" model="ir.actions.act_window">
         <field name="name">Vehicle Tags</field>
         <field name="res_model">fleet.vehicle.tag</field>
@@ -511,9 +527,7 @@
             </p>
         </field>
     </record>
-
     <menuitem id="fleet_vehicle_tag_menu" parent="fleet_configuration" action="fleet_vehicle_tag_action" sequence="89"/>
-
     <record id="fleet_vehicle_assignation_log_view_list" model="ir.ui.view">
         <field name="name">fleet.vehicle.assignation.log.view.tree</field>
         <field name="model">fleet.vehicle.assignation.log</field>
@@ -526,5 +540,4 @@
             </tree>
         </field>
     </record>
-
 </odoo>

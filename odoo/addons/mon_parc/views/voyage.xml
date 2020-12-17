@@ -1,6 +1,59 @@
 <odoo>
     <data>
         <!-- explicit list view definition -->
+        <record id='fleet_voyage_view_form' model='ir.ui.view'>
+            <field name="name">mon_parc.voyage.form</field>
+            <field name="model">mon_parc.voyage</field>
+            <field name="arch" type="xml">
+                <form string="Voyage">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="ndossier" class="oe_edit_only"/>
+                            <h1>
+                                <field name="ndossier" placeholder="N° Dossier"/>
+                            </h1>
+                            <label for="datedepart" class="oe_edit_only"/>
+                            <h2>
+                                <field name="datedepart" class="oe_inline" />
+                            </h2>
+                            <label for="datearrivee" class="oe_edit_only"/>
+                            <h2>
+                                <field name="datearrivee" class="oe_inline" />
+                            </h2>
+                        </div>
+                        <!-- <group col="2" string="Chauffeur"><field name="chauffeur_id"/><field name="chauffeur2_id"/></group> -->
+                        <group col="2">
+                            <group string="Driver">
+                                <field name="chauffeur_id"/>
+                                <field name="chauffeur2_id"/>
+                            </group>
+                            <group string="Vehicle">
+                                <label for="tracteur_id"/>
+                                <div class="o_row">
+                                    <field name="tracteur_id"/>
+                                </div>
+                                <field name="remorque_id"/>
+                            </group>
+                            <group string="Client">
+                                <field name="client_id"/>
+                            </group>
+                            <group string="trajet">
+                                <field name="trajets_id"/>
+                                <field name="pointdepart"/>
+                                <field name="pointarrivee"/>
+                                <field name="commentaire"/>
+                            </group>
+                            <group string="Facturation">
+                                <field name="factureid"/>
+                                <field name="Avance"/>
+                                <field name="reste"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
         <record model="ir.ui.view" id="mon_parc.listVoyage">
             <field name="name">Voyage</field>
             <field name="model">mon_parc.voyage</field>
@@ -38,7 +91,6 @@
       </field>
         </record>
 
-
         <record id="res_partner_action_customer" model="ir.actions.act_window">
             <field name="name">Customers</field>
             <field name="type">ir.actions.act_window</field>
@@ -54,14 +106,12 @@
         </p>
             </field>
         </record>
-
         <!-- menu categories -->
         <menuitem name="voyage" id="mon_parc.voyage" parent="mon_parc.menu_root"/>
-        <!-- actions   -->
 
+        <!-- actions   -->
         <menuitem name="liste des  voyages" id="mon_parc.voyage_list" parent="mon_parc.voyage"
               action="mon_parc.action_windowvoyage"/>
-
 
         <menuitem id="menu_account_customer2" name="liste des clients"
             parent="mon_parc.voyage" action="res_partner_action_customer"/>

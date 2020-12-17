@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "mon_parc",
+    'name': "TLM",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -10,7 +10,7 @@
         Long description of module's purpose
     """,
 
-    'author': "Mon parc",
+    'author': "ILAMMEDIA",
     'website': "http://ilammedia.ma",
 
     # Categories can be used to filter modules in modules listing
