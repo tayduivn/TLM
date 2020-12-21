@@ -27,9 +27,6 @@ class voyage(models.Model):
 
     trajets_id = fields.Many2one(comodel_name='mon_parc.trajet')
 
-    # mission_id = fields.Many2one('fleet.vehicle.mission', 'Mission')
-    # mission = fields.Float(compute="_get_mission",
-    #                        inverse='_set_mission', string='Mission Value')
     
 
     @api.model
@@ -37,7 +34,10 @@ class voyage(models.Model):
         rec = super(voyage, self).create(vals)
         # if not rec.remorque_id:
         rec._create_check_sequence()
+        rec._update_fleet_state()
         return rec
+
+    
 
 
     def _create_check_sequence(self):
@@ -55,26 +55,7 @@ class voyage(models.Model):
             'date_sortie':  self.datedepart,
             'vehicle_id': self.tracteur_id.id
             })
-
-    # def create(self):
-    #     self._get_mission()
-    #     self._set_mission()
-
-    # def _get_mission(self):
-    #     self.mission = 0.0
-    #     for record in self:
-    #         record.mission = False
-    #         if record.mission_id:
-    #             record.mission = record.mission_id.value
-
-    # def _set_mission(self):
-    #     for record in self:
-    #         # if not record.mission:
-    #         #     raise UserError(_('Emptying the mission value of a vehicle is not allowed.'))
-    #         self.mission = self.env['fleet.vehicle.mission'].create({
-    #             'comment': record.commentaire,
-    #             'date_arrivee': record.datedepart,
-    #             'date_sortie': record.datedepart ,
-    #             'vehicle_id': record.vehicle_id.id
-    #         })
-    #         self.mission_id = self.mission
+    
+    def _update_fleet_state(self):
+        self.env['fleet.vehicle'].search([('id', '=', self.remorque_id.id)]).write({'state_id': 7})
+        self.env['fleet.vehicle'].search([('id', '=', self.tracteur_id.id)]).write({'state_id': 7})

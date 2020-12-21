@@ -18,7 +18,6 @@
                 </tree>
             </field>
         </record>
-
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="mon_parc.action_windowTracteur">
             <field name="name">Tracteur</field>
@@ -26,14 +25,21 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-
         <record model="ir.actions.act_window" id="mon_parc.action_fleet">
-          <field name="name">vehicle</field>
-          <field name="res_model">fleet.vehicle</field>
-          <field name="view_mode">kanban,tree,form,activity</field> 
-          <!-- <field name="context">{'department_id':6}</field> -->
-          <field name="context">{'search_default_vehicler': 1,'fleet_vehicle_search_mode': 'vehicle', 'default_is_company': True, 'department_id': 6}</field>
-      </record>
+            <field name="name">vehicle</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="context">{'search_default_vehicler': 1,'fleet_vehicle_search_mode': 'vehicle', 'default_is_company': True, 'department_id': 6}</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="mon_parc.action_account">
+            <field name="name">Facture</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,form,kanban,activity</field>
+            <!-- <field name="context">{'search_default_vehicler': 1,'fleet_vehicle_search_mode': 'vehicle', 'default_is_company': True, 'department_id': 6}</field> -->
+        </record>
+
 
         <!-- server action to the one above -->
         <record model="ir.actions.server" id="mon_parc.action_server">
@@ -54,10 +60,10 @@
         <!-- menu categories -->
         <menuitem name="vehicule" id="mon_parc.vehicule" parent="mon_parc.menu_root"/>
 
-        <!-- <menuitem name="List des tracteurs" id="mon_parc.tracteur_list" parent="mon_parc.vehicule"
-              action="mon_parc.action_windowTracteur"/> -->
+        <menuitem name="Facturation" id="mon_parc.facture" parent="mon_parc.menu_root"/>
 
-        <menuitem name="List des vehicles" id="mon_parc.chauffeur_list2" parent="mon_parc.vehicule"
-              action="mon_parc.action_fleet"/>
+        <menuitem name="List des Factures" id="mon_parc.chauffeur_list3" parent="mon_parc.facture" action="mon_parc.action_account"/>
+
+        <menuitem name="List des vehicles" id="mon_parc.chauffeur_list2" parent="mon_parc.vehicule" action="mon_parc.action_fleet"/>
     </data>
 </odoo>
