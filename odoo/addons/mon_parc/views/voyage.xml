@@ -60,6 +60,13 @@
                                 <field name="pointarrivee"/>
                                 <field name="commentaire"/>
                             </group>
+                            <group string="Frais de voyage">
+                                <field name="Frais_de_voyage"/>
+                                <field name="Frais_de_conducteur"/>
+                                <field name="Frais_peage_Autoroute"/>
+                                <field name="Frais_gasoil"/>
+                                <field name="Frais_de_chargement"/>
+                            </group>
                             <group string="Facturation">
                                 <field name="factureid"/>
                                 <field name="Avance"/>

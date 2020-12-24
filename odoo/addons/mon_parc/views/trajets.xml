@@ -8,7 +8,11 @@
         <field name="arch" type="xml">
           <tree>
              <field name="trajet"/>
-             <field name="detail"/>
+             <field name="pointdepart"/>
+             <field name="pointarrivee"/>
+             <field name="kilometrage"/>
+             <field name="gasoil"/>
+             <field name="peage"/>
           </tree>
         </field>
       </record>

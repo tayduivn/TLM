@@ -18,16 +18,19 @@ class voyage(models.Model):
     factureid = fields.Char('N° Facture')
     Avance = fields.Char('Avance')
     reste = fields.Char('Le reste')
-
     tracteur_id = fields.Many2one(comodel_name='fleet.vehicle',  domain="[('tag_ids' , '=', 10)]")
     remorque_id = fields.Many2one(comodel_name='fleet.vehicle',  domain="[('tag_ids' , '=', 9)]")
     chauffeur_id = fields.Many2one(comodel_name='hr.employee', domain="[('department_id' , '=', 6)]")
     chauffeur2_id = fields.Many2one( comodel_name='hr.employee', domain="[('department_id' , '=', 6)]")
     client_id = fields.Many2one(comodel_name='res.partner', string='Client', domain="[('customer_rank' , '=', 1)]")
-
     trajets_id = fields.Many2one(comodel_name='mon_parc.trajet')
-
     type_voyage = fields.Selection([('Import', 'Import'), ('Export', 'Export')],  required=True)
+
+    Frais_de_voyage = fields.Float('Frais de voyage')
+    Frais_de_conducteur = fields.Float('Frais de conducteur')
+    Frais_peage_Autoroute = fields.Float('Frais péage Autoroute')
+    Frais_gasoil = fields.Float('Frais gasoil')
+    Frais_de_chargement = fields.Float('Frais de chargement')
 
 
     
