@@ -27,6 +27,9 @@ class voyage(models.Model):
 
     trajets_id = fields.Many2one(comodel_name='mon_parc.trajet')
 
+    type_voyage = fields.Selection([('Import', 'Import'), ('Export', 'Export')],  required=True)
+
+
     
 
     @api.model

@@ -7,12 +7,23 @@
             <field name="arch" type="xml">
                 <form string="Voyage">
                     <sheet>
+
                         <div class="oe_title">
                             <label for="ndossier" class="oe_edit_only"/>
                             <h1>
                                 <field name="ndossier" placeholder="N° Dossier"/>
                             </h1>
                         </div>
+
+
+                        <group>
+                            <label for="type_voyage" class="oe_edit_only"/>
+                            <h2>
+                                <field name="type_voyage" widget='radio' options="{'horizontal': true}"/>
+                            </h2>
+                        </group>
+
+
                         <group col="2">
                             <group>
                                 <label for="datedepart" class="oe_edit_only"/>
@@ -71,6 +82,7 @@
                     <field name="datearrivee"/>
                     <field name="pointdepart"/>
                     <field name="pointarrivee"/>
+                    <field name="type_voyage"/>
                 </tree>
             </field>
         </record>
