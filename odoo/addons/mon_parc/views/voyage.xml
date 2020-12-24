@@ -12,15 +12,21 @@
                             <h1>
                                 <field name="ndossier" placeholder="N° Dossier"/>
                             </h1>
-                            <label for="datedepart" class="oe_edit_only"/>
-                            <h2>
-                                <field name="datedepart" class="oe_inline" />
-                            </h2>
-                            <label for="datearrivee" class="oe_edit_only"/>
-                            <h2>
-                                <field name="datearrivee" class="oe_inline" />
-                            </h2>
                         </div>
+                        <group col="2">
+                            <group>
+                                <label for="datedepart" class="oe_edit_only"/>
+                                <h2>
+                                    <field name="datedepart" class="oe_inline" />
+                                </h2>
+                            </group>
+                            <group>
+                                <label for="datearrivee" class="oe_edit_only"/>
+                                <h2>
+                                    <field name="datearrivee" class="oe_inline" />
+                                </h2>
+                            </group>
+                        </group>
                         <!-- <group col="2" string="Chauffeur"><field name="chauffeur_id"/><field name="chauffeur2_id"/></group> -->
                         <group col="2">
                             <group string="Driver">
@@ -53,7 +59,6 @@
                 </form>
             </field>
         </record>
-
         <record model="ir.ui.view" id="mon_parc.listVoyage">
             <field name="name">Voyage</field>
             <field name="model">mon_parc.voyage</field>
@@ -69,14 +74,12 @@
                 </tree>
             </field>
         </record>
-
         <!-- actions opening views on models -->
         <record model="ir.actions.act_window" id="mon_parc.action_windowvoyage">
             <field name="name">Voyages</field>
             <field name="res_model">mon_parc.voyage</field>
             <field name="view_mode">tree,form</field>
         </record>
-
         <!-- server action to the one above -->
         <record model="ir.actions.server" id="mon_parc.action_server">
             <field name="name">Voyage server</field>
@@ -90,7 +93,6 @@
         }
       </field>
         </record>
-
         <record id="res_partner_action_customer" model="ir.actions.act_window">
             <field name="name">Customers</field>
             <field name="type">ir.actions.act_window</field>
@@ -108,11 +110,9 @@
         </record>
         <!-- menu categories -->
         <menuitem name="voyage" id="mon_parc.voyage" parent="mon_parc.menu_root"/>
-
         <!-- actions   -->
         <menuitem name="liste des  voyages" id="mon_parc.voyage_list" parent="mon_parc.voyage"
               action="mon_parc.action_windowvoyage"/>
-
         <menuitem id="menu_account_customer2" name="liste des clients"
             parent="mon_parc.voyage" action="res_partner_action_customer"/>
     </data>

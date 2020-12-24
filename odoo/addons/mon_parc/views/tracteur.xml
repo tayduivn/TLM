@@ -37,7 +37,6 @@
             <field name="name">Facture</field>
             <field name="res_model">account.move</field>
             <field name="view_mode">tree,form,kanban,activity</field>
-            <!-- <field name="context">{'search_default_vehicler': 1,'fleet_vehicle_search_mode': 'vehicle', 'default_is_company': True, 'department_id': 6}</field> -->
         </record>
 
 

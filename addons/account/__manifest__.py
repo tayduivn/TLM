@@ -19,9 +19,9 @@ You could use this simplified accounting in case you work with an (external) acc
     'data': [
         'security/account_security.xml',
         'security/ir.model.access.csv',
-        'data/data_account_type.xml',
-        'data/account_data.xml',
-        'data/digest_data.xml',
+        # 'data/data_account_type.xml',
+        # 'data/account_data.xml',
+        # 'data/digest_data.xml',
         'views/account_menuitem.xml',
         'views/account_payment_view.xml',
         'wizard/account_accrual_accounting_view.xml',
