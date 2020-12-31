@@ -111,7 +111,16 @@
                             <field name="net_car_value" widget="monetary"/>
                             <field name="residual_value" widget="monetary"/>
                             <field name="company_id" groups="base.group_multi_company"/>
+
+                            <field name="pieds"  options="{'horizontal': true}"/>
+                            <field name="poids_vide"/>
+                            <field name="Capacite"/>
+                            <field name="Bache"  options="{'horizontal': true}"/>
+
                         </group>
+
+
+
                         <group string="Contract">
                             <field name="manager_id"/>
                             <field name="first_contract_date"/>

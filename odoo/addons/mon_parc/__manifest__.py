@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'fleet', 'hr', 'account'],
+    'depends': ['base', 'fleet', 'hr', 'account' , 'purchase'],
 
     # always loaded
     'data': [
@@ -30,6 +30,7 @@
         'views/remorque.xml',
         'views/trajets.xml',
         'views/voyage.xml',
+        'views/position.xml',
         # 'views/models.xml',
         # 'views/templates.xml',
     ],

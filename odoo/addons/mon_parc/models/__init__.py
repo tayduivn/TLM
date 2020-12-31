@@ -6,3 +6,4 @@ from . import chauffeur
 from . import tracteur
 from .import trajets
 from .import voyage
+from .import position

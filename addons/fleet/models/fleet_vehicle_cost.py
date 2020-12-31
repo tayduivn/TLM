@@ -370,6 +370,7 @@ class FleetVehicleLogServices(models.Model):
     cost_amount = fields.Float(related='cost_id.amount', string='Amount', store=True, readonly=False)
     notes = fields.Text()
     cost_id = fields.Many2one('fleet.vehicle.cost', 'Cost', required=True, ondelete='cascade')
+    # product_id  = fields.Many2many('product.template' , 'Product')
 
     @api.onchange('vehicle_id')
     def _onchange_vehicle(self):

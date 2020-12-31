@@ -60,6 +60,7 @@
                                 <field name="pointarrivee"/>
                                 <field name="commentaire"/>
                             </group>
+
                             <group string="Frais de voyage">
                                 <field name="Frais_de_voyage"/>
                                 <field name="Frais_de_conducteur"/>
@@ -72,6 +73,10 @@
                                 <field name="Avance"/>
                                 <field name="reste"/>
                             </group>
+
+                        </group>
+                        <group string="Positions">
+                            <field name="position_id"/>
                         </group>
                     </sheet>
                 </form>

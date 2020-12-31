@@ -8,7 +8,7 @@ from odoo.tools.float_utils import float_round
 
 
 class ProductTemplate(models.Model):
-    _name = 'product.template'
+    _name = 'product.template' 
     _inherit = 'product.template'
 
     property_account_creditor_price_difference = fields.Many2one(

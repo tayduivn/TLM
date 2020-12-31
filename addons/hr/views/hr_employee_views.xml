@@ -97,6 +97,14 @@
                                 <field name="job_id"/>
                                 <field name="parent_id"/>
                             </group>
+
+                            <group>
+                                <field name="cin"/>
+                                <field name="passport"/>
+                                <field name="visa_du"/>
+                                <field name="visa_ou"/>
+                            </group>
+
                         </group>
                         <notebook>
                             <page name="public" string="Work Information">

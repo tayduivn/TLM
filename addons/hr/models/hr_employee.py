@@ -34,6 +34,11 @@ class HrEmployeePrivate(models.Model):
         image_path = get_module_resource('hr', 'static/src/img', 'default_image.png')
         return base64.b64encode(open(image_path, 'rb').read())
 
+    cin  = fields.Char(string='CIN')
+    passport = fields.Char(string='PASSPORT')
+    visa_du  = fields.Date(string='Visa Du ')
+    visa_ou  = fields.Date(string='Visa Ou ')
+
     # resource and user
     # required on the resource, make sure required="True" set in the view
     name = fields.Char(string="Employee Name", related='resource_id.name', store=True, readonly=False, tracking=True)

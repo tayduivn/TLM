@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from logging import log
+
+from psycopg2.extensions import JSON
 from odoo.tools.misc import logged
 from odoo import models, fields, _ , api
 from odoo.exceptions import UserError
@@ -32,6 +34,8 @@ class voyage(models.Model):
     Frais_gasoil = fields.Float('Frais gasoil')
     Frais_de_chargement = fields.Float('Frais de chargement')
 
+    position_id = fields.Many2many(comodel_name='mon_parc.trajet')
+
 
     
 
@@ -44,6 +48,25 @@ class voyage(models.Model):
         return rec
 
     
+    # def _get_all_so(self, trac_id =None):
+    #     sql = "SELECT * FROM mon_parc_voyage WHERE tracteur_id = '%s' order by name desc;" % trac_id
+    #     self.env.cr.execute(sql)
+    #     res_all = self.env.cr.fetchall()
+    #     #fetchall() will return an array of dictionaries
+    #     print(self.get_all_so(trac_id= 9 ))
+    #     return res_all
+
+
+    
+
+    # @api.multi
+    # def _get_all(self):
+    #     res = []
+    #     self.env.cr.execute(""" SELECT * FROM mon_parc_voyage WHERE tracteur_id = 9  """)
+    #     res_ids = [x[0] for x in self.env.cr.fetchall()]
+    #     # res.append(('id', search_operator, res_ids))
+    #     # print("*************************************************************************" + res_ids)
+    #     return res_ids
 
 
     def _create_check_sequence(self):

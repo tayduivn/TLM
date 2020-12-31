@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+      <!-- explicit list view definition -->
+      
+      <record model="ir.ui.view" id="mon_parc.listPosition">
+        <field name="name">Position</field>
+        <field name="model">mon_parc.position</field>
+        <field name="arch" type="xml">
+          <tree>
+             <field name="client_id"/>
+             <field name="trajet_id"/>
+          </tree>
+        </field>
+      </record>
+      
+  
+      <!-- actions opening views on models -->
+      
+      <record model="ir.actions.act_window" id="mon_parc.action_window_position">
+        <field name="name">Position</field>
+        <field name="res_model">mon_parc.position</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+     
+  
+      <!-- server action to the one above -->
+      
+      <record model="ir.actions.server" id="mon_parc.action_server">
+        <field name="name">Position</field>
+        <field name="model_id" ref="model_mon_parc_position"/>
+        <field name="state">code</field>
+        <field name="code">
+          action = {
+            "type": "ir.actions.act_window",
+            "view_mode": "tree,form",
+            "res_model": self._name,
+          }
+        </field>
+      </record>
+
+      
+      <!-- menu categories -->
+
+      <menuitem name="Position" id="mon_parc.position" parent="mon_parc.menu_root"/>
+      
+      <menuitem name="List des Positions" id="mon_parc.position_list" parent="mon_parc.position"
+                action="mon_parc.action_window_position"/>
+      
+    </data>
+  </odoo>

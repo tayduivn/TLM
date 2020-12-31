@@ -20,6 +20,13 @@ class FleetVehicle(models.Model):
     # chauffeur_id  = fields.Many2one(comodel_name='hr.employee')
     chauffeur_id = fields.Many2one(comodel_name='hr.employee', domain=[('department_id', '=', 6)])
     chauffeur2_id  = fields.Many2one(comodel_name='hr.employee', domain=[('department_id', '=', 6)])
+
+    # remorque
+    pieds  = fields.Selection([('20 Pieds', '20 Pieds') , ('40 Pieds', '40 Pieds')] )
+    poids_vide  = fields.Float(string='Poids vide')
+    Capacite  = fields.Float(string='Capacité')
+    Bache  = fields.Selection([('Oui', 'Oui') , ('Non', 'Non')] , string="Bâché ou non")
+
     name = fields.Char(compute="_compute_vehicle_name", store=True)
     active = fields.Boolean('Active', default=True, tracking=True)
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)

@@ -40,6 +40,13 @@
         </record>
 
 
+        <record model="ir.actions.act_window" id="mon_parc.action_article">
+            <field name="name">Article</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+        </record>
+
+
         <!-- server action to the one above -->
         <record model="ir.actions.server" id="mon_parc.action_server">
             <field name="name">Tracteur server</field>
@@ -61,7 +68,11 @@
 
         <menuitem name="Facturation" id="mon_parc.facture" parent="mon_parc.menu_root"/>
 
+        <menuitem name="Article" id="mon_parc.articles" parent="mon_parc.menu_root"/>
+
         <menuitem name="List des Factures" id="mon_parc.chauffeur_list3" parent="mon_parc.facture" action="mon_parc.action_account"/>
+
+        <menuitem name="List des Articles" id="mon_parc.article" parent="mon_parc.articles" action="mon_parc.action_article"/>
 
         <menuitem name="List des vehicles" id="mon_parc.chauffeur_list2" parent="mon_parc.vehicule" action="mon_parc.action_fleet"/>
     </data>

@@ -25,6 +25,12 @@
         <field name="res_model">mon_parc.trajet</field>
         <field name="view_mode">tree,form</field>
       </record>
+
+      <record model="ir.actions.act_window" id="mon_parc.action_windowPosition">
+        <field name="name">Position</field>
+        <field name="res_model">mon_parc.position</field>
+        <field name="view_mode">tree,form</field>
+      </record>
      
   
       <!-- server action to the one above -->
